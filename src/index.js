@@ -85,8 +85,34 @@ class Game extends React.Component {
         const winner = calculateWinner(current.squares);
 
         const moves = history.map((step, move) => {
+
+            let stepSquareIndex;
+            for (let i = 0; i < step.squares.length; i++) {
+                if (step.squares[i] && !history[move -1].squares[i]) {
+                    stepSquareIndex = i;
+                }
+            }
+
+            let col;
+            if (stepSquareIndex === 0 || stepSquareIndex === 3 || stepSquareIndex === 6) {
+                col = 'A';
+            } else if (stepSquareIndex === 1 || stepSquareIndex === 4 || stepSquareIndex === 7) {
+                col = 'B';
+            } else if (stepSquareIndex === 2 || stepSquareIndex === 5 || stepSquareIndex === 8) {
+                col = 'C';
+            }
+
+            let row;
+            if (stepSquareIndex >= 0 && stepSquareIndex <= 2) {
+                row = 'A';
+            } else if (stepSquareIndex >= 3 && stepSquareIndex <= 5) {
+                row = 'B';
+            } else if (stepSquareIndex >= 6 && stepSquareIndex <= 8) {
+                row = 'C';
+            }
+
             const desc = move ?
-                'Go to move #' + move :
+                'Go to move #' + move + ' at (' + col + ', ' + row + ')' :
                 'Go to game start';
             return (
                 <li key={move}>
