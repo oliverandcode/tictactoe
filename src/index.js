@@ -91,7 +91,7 @@ class Game extends React.Component {
                 if (step.squares[i] && !history[move -1].squares[i]) {
                     stepSquareIndex = i;
                 }
-            }
+            };
 
             let col;
             if (stepSquareIndex === 0 || stepSquareIndex === 3 || stepSquareIndex === 6) {
@@ -100,7 +100,7 @@ class Game extends React.Component {
                 col = 'B';
             } else if (stepSquareIndex === 2 || stepSquareIndex === 5 || stepSquareIndex === 8) {
                 col = 'C';
-            }
+            };
 
             let row;
             if (stepSquareIndex >= 0 && stepSquareIndex <= 2) {
@@ -109,14 +109,14 @@ class Game extends React.Component {
                 row = 'B';
             } else if (stepSquareIndex >= 6 && stepSquareIndex <= 8) {
                 row = 'C';
-            }
+            };
 
             const desc = move ?
                 'Go to move #' + move + ' at (' + col + ', ' + row + ')' :
                 'Go to game start';
             return (
                 <li key={move}>
-                    <button onClick={() => this.jumpTo(move)}>{desc}</button>
+                    <button onClick={() => this.jumpTo(move)} className="move-button">{desc}</button>
                 </li>
             );
         });
